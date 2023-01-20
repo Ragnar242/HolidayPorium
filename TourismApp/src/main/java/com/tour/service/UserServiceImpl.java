@@ -71,12 +71,14 @@ public class UserServiceImpl implements UserService{
 			}
 		}
 			catch(NoSuchAlgorithmException e) {
-				throw new HolidayPoriumException("UserService.HASH_FUNCTION_EXCEPTION");
-				
+				throw new HolidayPoriumException("UserService.HASH_FUNCTION_EXCEPTION");	
 			}
-		catch (HolidayPoriumException e) {
-			throw new HolidayPoriumException(e.getMessage());
-		}
+		    catch (HolidayPoriumException e) {
+			    throw new HolidayPoriumException(e.getMessage());
+		    }
+		    catch(Exception ex) {
+	    	    throw new HolidayPoriumException("UserService.INVALID_REGISTRATION");
+	        }
 	
 	}
 
