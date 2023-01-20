@@ -29,7 +29,7 @@ public class UserController {
 	
 	//login user - fetches and returns user details taking user object as parameter
 	@RequestMapping(value = "/userLogin", method = RequestMethod.POST)
-	public ResponseEntity<UserDTO> loginUser(@RequestBody UserDTO dto){
+	public ResponseEntity<UserDTO> loginUser(@RequestBody UserDTO dto)throws Exception{
 		try {
 			UserDTO userDTO = userService.authenticateUser(dto.getContactNumber(), dto.getPassword());
 			return new ResponseEntity<UserDTO>(userDTO,HttpStatus.OK);
@@ -42,7 +42,7 @@ public class UserController {
 	
 	//register user - takes user details and give success/error response back after checking user details in db
 	@RequestMapping(value = "/userRegister", method = RequestMethod.POST)
-	public ResponseEntity<String> registerUser(@Valid @RequestBody UserDTO dto){
+	public ResponseEntity<String> registerUser(@Valid @RequestBody UserDTO dto) throws Exception{
 		try {
 			String response = userService.registerUser(dto);
 			String concatMessageString = environment.getProperty("UserAPI.REGISTER_USER_SUCCESS1")+response+"!"+environment.getProperty("UserAPI.REGISTER_USER_SUCCESS2");
