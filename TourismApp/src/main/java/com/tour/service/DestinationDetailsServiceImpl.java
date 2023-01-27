@@ -28,7 +28,7 @@ public class DestinationDetailsServiceImpl implements DestinationDetailsService{
 		DestinationDTO destination = null;
 		DestinationEntity destinations = destinationDetailsRepository.findDestinationDetailsByDestinationId(destinationId);
 		if (destinations == null) {
-			throw new Exception("BookingServices.INVALID_DESTINATION_ID");
+			throw new Exception("DetailsServices.INVALID_DESTINATION_ID");
 		} else {
 
 			destination = new DestinationDTO();
