@@ -1,8 +1,8 @@
 package com.tour.service;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -35,7 +35,7 @@ public class UserServiceTest {
 			Mockito.when(userRepository.findByContactNumber(contactNo)).thenReturn(user);
 			HolidayPoriumException exception = assertThrows(HolidayPoriumException.class,
 					() -> userServiceImpl.authenticateUser(contactNo, password));
-			assertEquals("UserService.INVALID_CREDENTIALS", exception.getMessage());
+			Assert.assertEquals("UserService.INVALID_CREDENTIALS", exception.getMessage());
 
 		}
 
@@ -51,7 +51,7 @@ public class UserServiceTest {
 			Mockito.when(userRepository.findByContactNumber(contactNo)).thenReturn(user);
 			HolidayPoriumException exception = assertThrows(HolidayPoriumException.class,
 					() -> userServiceImpl.authenticateUser(contactNo, password));
-			assertEquals("UserService.INVALID_CREDENTIALS", exception.getMessage());
+			Assert.assertEquals("UserService.INVALID_CREDENTIALS", exception.getMessage());
 
 		}
 
@@ -61,7 +61,7 @@ public class UserServiceTest {
 			users.setPassword("abc");
 			Mockito.when(userRepository.findByContactNumber(Mockito.anyString())).thenReturn(users);
 			HolidayPoriumException exception = assertThrows(HolidayPoriumException.class, ()-> userServiceImpl.authenticateUser("8884967823","Scott@123" ));
-			assertEquals("UserService.INVALID_CREDENTIALS", exception.getMessage());
+			Assert.assertEquals("UserService.INVALID_CREDENTIALS", exception.getMessage());
 			
 		}
 
@@ -72,7 +72,7 @@ public class UserServiceTest {
 			expected.setContactNumber("8884967823");
 			Mockito.when(userRepository.findByContactNumber(Mockito.anyString())).thenReturn(expected);
 			UserDTO actual = userServiceImpl.authenticateUser("8889765465", "Scott@123");
-			assertEquals(expected.getContactNumber(), actual.getContactNumber());	}
+			Assert.assertEquals(expected.getContactNumber(), actual.getContactNumber());	}
 		
 		
 		@Test
@@ -85,7 +85,7 @@ public class UserServiceTest {
 			expected.setContactNumber("9668599117");
 			Mockito.when(userRepository.findByContactNumber(Mockito.anyString())).thenReturn(expected);
 			HolidayPoriumException exception = assertThrows(HolidayPoriumException.class, ()->userServiceImpl.registerUser(users));
-			assertEquals("UserService.CONTACT_NUMBER_ALREADY_EXISTS", exception.getMessage());
+			Assert.assertEquals("UserService.CONTACT_NUMBER_ALREADY_EXISTS", exception.getMessage());
 			
 				}
 		@Test
@@ -107,8 +107,8 @@ public class UserServiceTest {
 			Mockito.when(userRepository.findByContactNumber(Mockito.anyString())).thenReturn(expected);
 			 
 				HolidayPoriumException exception = assertThrows(HolidayPoriumException.class, ()->userServiceImpl.registerUser(users));
-				assertEquals("UserService.CONTACT_NUMBER_ALREADY_EXISTS", exception.getMessage());
-			assertEquals(expected.getUserName() , users.getUserName());
+				Assert.assertEquals("UserService.CONTACT_NUMBER_ALREADY_EXISTS", exception.getMessage());
+				Assert.assertEquals(expected.getUserName() , users.getUserName());
 	}
 
 }

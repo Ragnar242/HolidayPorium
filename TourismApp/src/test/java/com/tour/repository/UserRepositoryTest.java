@@ -1,6 +1,6 @@
 package com.tour.repository;
 
-import static org.junit.Assert.assertNull;
+import org.junit.Assert;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,6 +30,6 @@ public class UserRepositoryTest {
 		// invalid login
 		@Test
 		public void invalidLogin() throws Exception {
-			assertNull(userRepository.findByContactNumber("1234567890"));
+			Assert.assertNull(userRepository.findByContactNumber("1234567890"));
 		}
 }
